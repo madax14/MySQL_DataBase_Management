@@ -1,3 +1,4 @@
+# Creating a schema
 CREATE SCHEMA mavenbearbulders;
 USE mavenbearbulders;
 
@@ -24,7 +25,7 @@ min(created_at),
 max(created_at)
 FROM orders_items;	
 
-# Creating new table schema to import antoher table
+# Creating a new table schema to import another table
 CREATE TABLE order_item_refund (
 order_item_refund_id bigint,
 created_at datetime,
@@ -34,7 +35,7 @@ refund_amount_usd decimal(6,2),
 PRIMARY KEY(order_item_id)
 );
 
-# Alering the primary key
+# Altering the primary key
 ALTER TABLE order_item_refund DROP PRIMARY KEY;
 ALTER TABLE order_item_refund ADD PRIMARY KEY(order_item_refund_id);
 # adding a foreign key that I forgot to add in the schema table
@@ -42,6 +43,6 @@ ALTER TABLE order_item_refund ADD foreign key(order_item_id) references orders_i
 
 SELECT * FROM order_item_refund;
 
-# Removing wrong data from dataset
+# Removing wrong data from the dataset
 DELETE FROM order_item_refund 
 WHERE order_item_refund_id BETWEEN 6 AND 10;
